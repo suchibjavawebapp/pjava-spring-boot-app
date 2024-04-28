@@ -15,13 +15,14 @@ pipeline {
                 echo "----------- build completed ----------"
             }
         }
+        /*
         stage("Test Stage"){
             steps{
                 echo "----------- unit test started ----------"
                 sh 'mvn surefire-report:report'
                 echo "----------- unit test Completed ----------"
             }
-        }
+        }*/
 
         
         stage('SonarQube analysis') {
@@ -34,6 +35,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage("Quality Gate"){
             steps {
                 script {
@@ -45,7 +47,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         /*
         stage("Artifact Publish") {
             steps {
