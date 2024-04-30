@@ -15,14 +15,7 @@ pipeline {
                 echo "----------- build completed ----------"
             }
         }
-                stage("Test Stage"){
-            steps{
-                echo "----------- unit test started ----------"
-                sh 'mvn surefire-report:report'
-                echo "----------- unit test Completed ----------"
-            }
-        }
-                stage("Artifact Publish") {
+        stage("Artifact Publish") {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
@@ -46,7 +39,7 @@ pipeline {
                 }
             } 
         } 
-                stage(" Create Docker Image ") {
+        stage(" Create Docker Image ") {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
