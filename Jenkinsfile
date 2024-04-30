@@ -46,6 +46,29 @@ pipeline {
                 }
             } 
         } 
+                stage(" Create Docker Image ") {
+            steps {
+                script {
+                    echo '-------------- Docker Build Started -------------'
+                    app = docker.build("mesuchiportal.jfrog.io/mesuchiportal-docker-local/myapp:1.0")
+                    echo '-------------- Docker Build Ended -------------'
+                }
+            }
+        }
+
+        stage (" Docker Publish "){
+            steps {
+                script {
+                        echo '---------- Docker Publish Started --------'  
+                        docker.withRegistry("https://mesuchiportal.jfrog.io", 'jfrog-cred'){
+                        app.push()
+                        echo '------------ Docker Publish Ended ---------'  
+                    }    
+                }
+            }
+        }
+
+
 
 
 
