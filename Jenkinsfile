@@ -14,7 +14,40 @@ pipeline {
                 sh 'mvn clean package -Dmaven.test.skip=true'
                 echo "----------- build completed ----------"
             }
-        }/*
+        }
+        stage("Test Stage"){
+            steps{
+                echo "----------- unit test started ----------"
+                sh 'mvn surefire-report:report'
+                echo "----------- unit test Completed ----------"
+            }
+        }
+                stage("Artifact Publish") {
+            steps {
+                script {
+                    echo '------------- Artifact Publish Started ------------'
+                    def server = Artifactory.newServer url:"https://mesuchiportal.jfrog.io//artifactory" ,  credentialsId:"jfrog-cred"
+                    def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "staging/(*)",
+                                "target": "mesuchiportal-docker-local/{1}",
+                                "flat": "false",
+                                "props" : "${properties}",
+                                "exclusions": [ "*.sha1", "*.md5"]
+                            }
+                        ]
+                    }"""
+                    def buildInfo = server.upload(uploadSpec)
+                    buildInfo.env.collect()
+                    server.publishBuildInfo(buildInfo)
+                    echo '------------ Artifact Publish Ended -----------'  
+                }
+            }  
+
+
+        /*
         stage("Artifact Publish") {
             steps {
                 script {
