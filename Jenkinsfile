@@ -22,7 +22,7 @@ pipeline {
                 echo "----------- unit test Completed ----------"
             }
         }
-                stage("Artifact Publish") {
+            stage("Artifact Publish") {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
@@ -45,7 +45,7 @@ pipeline {
                     echo '------------ Artifact Publish Ended -----------'  
                 }
             } 
-       }*/
+       }
 
 }
 }
