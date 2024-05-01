@@ -44,7 +44,11 @@ pipeline {
                     server.publishBuildInfo(buildInfo)
                     echo '------------ Artifact Publish Ended -----------'  
                 }
-            }  
+            } 
+       }
+}
+}
+
 
 
         /*
@@ -98,6 +102,4 @@ pipeline {
 
 
 
-       
-    }
-}
+           
