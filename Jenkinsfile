@@ -11,10 +11,10 @@ pipeline {
         stage("build code"){
             steps {
                 echo "----------- build started ----------"
-                sh 'mvn clean install -Dmaven.test.skip=true'
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "----------- build completed ----------"
             }
-        }/*
+        }
         stage("Test Stage"){
             steps{
                 echo "----------- unit test started ----------"
@@ -46,7 +46,7 @@ pipeline {
                 }
             } 
        }*/
-       
+
 }
 }
 
