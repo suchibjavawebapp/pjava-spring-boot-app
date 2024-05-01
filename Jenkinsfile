@@ -14,7 +14,7 @@ pipeline {
                 sh 'mvn clean package -Dmaven.test.skip=true'
                 echo "----------- build completed ----------"
             }
-        }
+        }/*
         stage("Artifact Publish") {
             steps {
                 script {
@@ -38,7 +38,7 @@ pipeline {
                     echo '------------ Artifact Publish Ended -----------'  
                 }
             } 
-        } 
+        }
         stage(" Create Docker Image ") {
             steps {
                 script {
@@ -59,7 +59,7 @@ pipeline {
                     }    
                 }
             }
-        }
+        }*/
 
 
 
